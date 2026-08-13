@@ -1,6 +1,9 @@
+import NavBar from "./components/navBar.jsx";
+
+
 function App() {
     return(
-        <h1>Meu site em react</h1>
+        < NavBar/>
     );
 }
 export default App;
