@@ -1,6 +1,7 @@
 import NavBar from "./components/navBar.jsx";
 import Inicio from "./components/inicio.jsx";
 import Trabalhos from "./components/trabalhos.jsx";
+import Sobre from "./components/sobre.jsx"
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         
         < Inicio/>
         < Trabalhos/>
+        < Sobre/>
         
         </>
     );

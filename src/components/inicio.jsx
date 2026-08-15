@@ -11,7 +11,7 @@ function Inicio() {
     };
 
     return (
-        <section className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-neutral-950">
+        <section id="inicio" className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-neutral-950">
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
                 style={{ backgroundImage: `url(${bgStart})`}}

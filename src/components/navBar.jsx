@@ -7,8 +7,8 @@ function NavBar() {
     const menuitensAtive = [
         { id: "inicio", label: "INÍCIO" },
         { id: "trabalhos", label: "TRABALHOS" },
-        { id: "contato", label: "CONTATO" },
         { id: "sobre", label: "SOBRE" },
+        { id: "contato", label: "CONTATO" },
     ];
 
     const clique = (e, id) => {

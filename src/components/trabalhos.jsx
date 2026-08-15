@@ -24,14 +24,14 @@ function Trabalhos() {
     ];
 
     return (
-        <section className="relative flex min-h-screen w-full flex-col items-center justify-center bg-neutral-900">
+        <section id="trabalhos" className=" scroll-m-20 relative flex min-h-screen w-full flex-col items-center justify-center bg-neutral-900">
             <div
                 className="pointer-events-none absolute inset-0 h-full bg-cover bg-right bg-no-repeat opacity-20"
                 style={{ backgroundImage: `url(${bgWorks})` }}
             />
 
             <div className="relative z-10 flex w-full flex-col items-center">
-                <div className="relative -top-30 flex flex-col items-start">
+                <div className="relative -top-12 flex flex-col items-start">
                     <span className="font-[Pirata_One] text-5xl text-gray-400">
                         ALGUNS
                     </span>
@@ -41,8 +41,8 @@ function Trabalhos() {
                     </span>
                 </div>
 
-                <div className=" relative w-full -top-18 overflow-hidden md:mx-auto md:max-w-6xl md:top-0">
-                    <div className="flex -top-40 w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-6 touch-pan-x scrollbar-none select-none cursor-grab active:cursor-grabbing md:grid md:grid-cols-3 md:overflow-visible">
+                <div className=" relative w-full -top-10 overflow-hidden md:mx-auto md:max-w-6xl md:top-0">
+                    <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-6 touch-pan-x scrollbar-none select-none cursor-grab active:cursor-grabbing md:grid md:grid-cols-3 md:overflow-visible">
                         {photosWork.map((item) => (
                             <div
                                 key={item.id}
@@ -58,7 +58,7 @@ function Trabalhos() {
                         ))}
                     </div>
                 </div>
-                <div className="bg-amber-600 h-7 w-55 flex justify-center items-center rounded-4xl">
+                <div className="bg-amber-600 h-9 w-55 flex justify-center items-center rounded-4xl">
                     <a href="https://www.instagram.com/pedromenezes_3/" target="_blank">
                         <button className="font-[Medula_One] text-2xl">CLIQUE PARA VER MAIS</button>
                     </a>
