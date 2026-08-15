@@ -15,9 +15,9 @@ function Sobre() {
                     <p>A TATUAGEM É A HISTÓRIA</p>
                 </div>
             </div>
-            <div className="z-10">
+            <div>
                 <div>
-                    <img src="fotosobre.PNG" alt="Foto pedro menezes" />
+                    <img src="fotosobre.png" alt="Foto pedro menezes" />
                 </div>
                 <div>
                     <p>cada tatuagem começa com uma ideia, mas o que imoporta é o significado que ela carrega para sempre</p>

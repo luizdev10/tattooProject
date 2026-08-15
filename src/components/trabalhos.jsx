@@ -46,7 +46,7 @@ function Trabalhos() {
                         {photosWork.map((item) => (
                             <div
                                 key={item.id}
-                                className="group relative min-w-[80vw] flex-shrink-0 snap-center overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950 sm:min-w-[320px] md:min-w-0"
+                                className="group relative min-w-[80vw] snap-center overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950 sm:min-w-[320px] md:min-w-0"
                             >
                                 <img
                                     src={item.url}
