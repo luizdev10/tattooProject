@@ -17,7 +17,7 @@ function Sobre() {
             </div>
             <div className="z-10">
                 <div>
-                    <img src="./src/assets/img/fotosobre.PNG" alt="Foto pedro menezes" />
+                    <img src="fotosobre.PNG" alt="Foto pedro menezes" />
                 </div>
                 <div>
                     <p>cada tatuagem começa com uma ideia, mas o que imoporta é o significado que ela carrega para sempre</p>
