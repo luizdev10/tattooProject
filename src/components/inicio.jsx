@@ -2,14 +2,6 @@ import React from "react";
 import bgStart from "../assets/img/bg-start.PNG";
 
 function Inicio() {
-    const abrirWhatsapp = () => {
-        const numero = "5588988151026";
-        const mensagem = "Olá, Pedro! Gostaria de agendar um horário para uma tatuagem.";
-        const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-
-        window.open(link, "_blank");
-    };
-
     return (
         <section id="inicio" className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-neutral-950">
             <div
