@@ -6,7 +6,7 @@ function Inicio() {
         <section id="inicio" className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-neutral-950">
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
-                style={{ backgroundImage: `url(${bgStart})`}}
+                style={{ backgroundImage: `url(${bgStart})`}} href="#inicio"
             />
             <div className="absolute inset-0  from-black/70 via-transparent to-neutral-900 " />
             <div className="relative z-10 flex max-w-4xl flex-col items-center px-6 text-center ">
