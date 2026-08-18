@@ -37,7 +37,7 @@ function Sobre() {
                         <span className="w-15 h-0.5 bg-amber-100 mb-3"></span>
                     </div>
 
-                    <div className="font-[Medula_One] text-3xl text-center text-amber-100 w-52 pt-4">
+                    <div className="font-[Medula_One] text-[27px] text-center text-amber-100 w-52 pt-4">
                         <p className="">A PELE É A TELA.<br />
                             A TATUAGEM É A HISTÓRIA.</p>
                     </div>

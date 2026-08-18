@@ -129,7 +129,7 @@ function Contato() {
 
           <div className="grid grid-cols-2 gap-4">
             <label className="flex flex-col gap-1">
-              <span className={rotulo}>Dia</span>
+              <span className={rotulo}>Dia (preferêrencia)</span>
               <div className="relative">
                 <Calendar className={iconeCampo} strokeWidth={1.5} />
                 <input
@@ -145,7 +145,7 @@ function Contato() {
             </label>
 
             <label className="flex flex-col gap-1">
-              <span className={rotulo}>Hora</span>
+              <span className={rotulo}>Hora (preferêrencia)</span>
               <div className="relative">
                 <Clock className={iconeCampo} strokeWidth={1.5} />
                 <input
