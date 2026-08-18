@@ -12,3 +12,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
+#trabalhos img {
+  -webkit-user-drag: none;
+  user-select: none;
+}

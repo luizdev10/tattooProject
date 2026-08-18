@@ -42,17 +42,17 @@ function Trabalhos() {
                 </div>
 
                 <div className=" relative w-full -top-10 overflow-hidden md:mx-auto md:max-w-6xl md:top-0">
-                    <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-6 touch-pan-x scrollbar-none select-none cursor-grab active:cursor-grabbing md:grid md:grid-cols-3 md:overflow-visible">
+                    <div className="flex w-full snap-mandatory overscroll-x-contain gap-6 overflow-x-auto pb-6  scrollbar-none select-none cursor-grab active:cursor-grabbing md:grid md:grid-cols-3 md:overflow-visible">
                         {photosWork.map((item) => (
                             <div
                                 key={item.id}
-                                className="group relative min-w-[80vw] snap-center overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950 sm:min-w-[320px] md:min-w-0"
+                                className="group relative min-w-[80vw] snap-center overflow-hidden  rounded-xl border border-neutral-800 bg-neutral-950 sm:min-w-[320px] md:min-w-0"
                             >
                                 <img
                                     src={item.url}
                                     alt={`Trabalho ${item.id}`}
                                     draggable="false"
-                                    className="h-96 w-full object-cover transition-transform duration-500 pointer-events-none md:group-hover:scale-105"
+                                    className=" fotos_work h-96 w-full object-cover transition-transform duration-500 md:group-hover:scale-105"
                                 />
                             </div>
                         ))}
