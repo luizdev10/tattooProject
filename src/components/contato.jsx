@@ -17,7 +17,7 @@ function Contato() {
       `Local do corpo: ${form.local}\n` +
       `Tamanho: ${form.tamanho}`;
     window.open(
-      `https://wa.me/88988151026?text=${encodeURIComponent(texto)}`,
+      `https://wa.me/5588988151026?text=${encodeURIComponent(texto)}`,
       "_blank"
     );
   };
