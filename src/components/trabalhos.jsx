@@ -39,7 +39,7 @@ function Trabalhos() {
           <span className="block font-[Pirata_One] text-6xl text-gray-200">TRABALHOS</span>
         </div>
 
-        <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-6 scrollbar-none md:grid md:grid-cols-3 md:overflow-visible">
+        <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-6  md:grid md:grid-cols-3 md:overflow-visible">
           {photosWork.map((item) => (
             <article
               key={item.id}
