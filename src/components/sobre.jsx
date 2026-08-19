@@ -29,7 +29,7 @@ function Sobre() {
                         className="h-60 w-40 rounded-lg object-cover shadow-lg "
                     />
                 </div>
-                <div id="test" className="">
+                <div className="">
 
                     <div className=" font-[Pirata_One] text-center flex flex-col items-center">
                         <p className="text-6xl text-gray-400">SOBRE O</p>
