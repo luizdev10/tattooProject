@@ -50,13 +50,13 @@ export default function Contato() {
   return (
     <section
       id="contato"
-      className="min-h-screen w-full bg-neutral-900 px-6 py-24"
+      className="min-h-2xl w-full bg-neutral-900 px-6 py-16 md:py-24"
     >
       <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-2">
         <div className="flex flex-col justify-center">
           <div className="font-[Pirata_One] flex flex-col">
-            <p className="text-5xl text-gray-400">VAMOS CRIAR</p>
-            <p className="text-6xl text-gray-200">SUA HISTÓRIA</p>
+            <p className="text-3xl sm:text-4xl md:text-5xl text-gray-400">VAMOS CRIAR</p>
+            <p className="text-4xl sm:text-5xl md:text-6xl text-gray-200">SUA HISTÓRIA</p>
             <span className="mt-2 mb-3 h-0.5 w-32 bg-amber-100" />
           </div>
           <div className="font-[Montserrat] mt-4 flex flex-col gap-4 text-gray-100/80">

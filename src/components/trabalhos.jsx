@@ -1,4 +1,4 @@
-import bgWorks from "../assets/img/bg-works.PNG";
+import bgStart from "../assets/img/bg-start.PNG"
 
 import foto1 from "../assets/img/foto1.PNG";
 import foto2 from "../assets/img/foto2.PNG";
@@ -26,17 +26,17 @@ function Trabalhos() {
   return (
     <section
       id="trabalhos"
-      className="scroll-m-20 relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-neutral-900 px-6 py-24"
+      className="scroll-m-20 relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-neutral-900 px-6 py-15"
     >
       <div
-        className="pointer-events-none absolute inset-0 h-full bg-cover bg-right bg-no-repeat opacity-20"
-        style={{ backgroundImage: `url(${bgWorks})` }}
+        className="pointer-events-none absolute inset-0 bg-cover bg-top bg-no-repeat opacity-20"
+        style={{ backgroundImage: `url(${bgStart})` }}
       />
 
       <div className="relative z-10 flex w-full max-w-6xl flex-col">
         <div className="mb-10">
-          <span className="block font-[Pirata_One] text-5xl text-gray-400">ALGUNS</span>
-          <span className="block font-[Pirata_One] text-6xl text-gray-200">TRABALHOS</span>
+          <span className="block font-[Pirata_One] text-5xl md:text-6xl lg:text-7xl text-gray-400">ALGUNS</span>
+          <span className="block font-[Pirata_One] text-6xl md:text-7xl lg:text-8xl text-gray-200">TRABALHOS</span>
         </div>
 
         <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-6  md:grid md:grid-cols-3 md:overflow-visible">
@@ -50,7 +50,7 @@ function Trabalhos() {
                   src={item.url}
                   alt={`Trabalho ${item.id}`}
                   draggable="false"
-                  className="h-96 w-full object-cover transition-transform duration-500"
+                  className="h-96 w-full object-cover transition-transform duration-500 "
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950/75 via-transparent to-transparent" />
               </div>

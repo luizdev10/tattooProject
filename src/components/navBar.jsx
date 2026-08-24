@@ -14,6 +14,7 @@ function NavBar() {
     const clique = (e, id) => {
         e.preventDefault();
         setTracoAtive(id);
+        setMenuOpen(false);
 
         const element = document.getElementById(id);
         if (element) {
@@ -64,7 +65,7 @@ function NavBar() {
                                 href={`#${item.id}`}
                                 onClick={(e) => clique(e, item.id)}
                                 className={`pb-1 transition-all text-3xl ${tracoAtive === item.id
-                                        ? "border-b-4 border-gray-500 "
+                                        ? "border-b-4 border-amber-200"
                                         : ""
                                     }`}
                             >
