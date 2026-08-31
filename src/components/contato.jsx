@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { MapPin, Clock, MessageCircle, Calendar, DollarSign } from "lucide-react";
+import { MapPin, Clock, MessageCircle, Calendar, DollarSign, FileText} from "lucide-react";
 import { SiInstagram } from "@icons-pack/react-simple-icons";
+import { Link } from 'react-router-dom';
 const NUMERO_WHATS = "5588988151026";
 const campo =
   "w-full border-b border-amber-100/25 bg-transparent py-3 text-amber-100 outline-none placeholder:text-amber-100/40 focus:border-amber-100 autofill:shadow-[inset_0_0_0_1000px_#171717] [&:-webkit-autofill]:[-webkit-text-fill-color:#fef3c7] [color-scheme:dark]";
@@ -40,7 +41,7 @@ export default function Contato() {
     const texto =
       `Olá Pedro! Me chamo ${form.nome}.\n` +
       `Estou com uma ideia de fazer um(a) ${form.ideia}, no(a) ${form.local} com ${form.tamanho}cm.\n` +
-      `Tenho disponibilidade ${quando || "a combinar"}. \n`+
+      `Tenho disponibilidade ${quando || "a combinar"}. \n` +
       `Estimativa de : ${estimativa} R$`;
     window.open(
       `https://wa.me/${NUMERO_WHATS}?text=${encodeURIComponent(texto)}`,
@@ -69,13 +70,14 @@ export default function Contato() {
               <SiInstagram className="h-5 w-5 shrink-0 opacity-70" />
               @pedromenezes_3
             </a>
-            <a href="https://www.google.com/maps/@-7.2292801,-39.303234,3a,75y,65.6h,87.24t/data=!3m7!1e1!3m5!1saxvMU8TAkawUrfCgUG9PpA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D2.7592529354514994%26panoid%3DaxvMU8TAkawUrfCgUG9PpA%26yaw%3D65.60174514828167!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgxNi4wIKXMDSoASAFQAw%3D%3D" 
-            target="_blank"
-            className="flex items-start gap-3 text-[15px] leading-relaxed hover:text-gray-100">
-             <MapPin className="mt-1 h-5 w-5 shrink-0" strokeWidth={1.25} />
+            <a href="https://www.google.com/maps/@-7.2291944,-39.3032022,3a,75y,149.62h,78.04t/data=!3m7!1e1!3m5!1sLrtD5QBlqkwoPB99mrnvPw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D11.960293368812316%26panoid%3DLrtD5QBlqkwoPB99mrnvPw%26yaw%3D149.6185047435401!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              className="flex items-start gap-3 text-[15px] leading-relaxed hover:text-gray-100">
+              <MapPin className="mt-1 h-5 w-5 shrink-0" strokeWidth={1.25} />
               RUA CORONEL FILEMON TELES, 30 — BAIRRO JOSÉ GERALDO DA CRUZ
             </a>
             
+
           </div>
         </div>
         <form
@@ -136,7 +138,7 @@ export default function Contato() {
                 </span>
               </div>
               <p className="mt-2 text-xs text-gray-100 leading-relaxed">
-                * Valor estimado baseado no tamanho informado. 
+                * Valor estimado baseado no tamanho informado.
                 O preço final pode variar conforme complexidade do desenho e detalhes.*
               </p>
             </div>
@@ -184,7 +186,17 @@ export default function Contato() {
             Dia e horário são apenas preferências — confirmamos pelo WhatsApp.
           </p>
         </form>
+
       </div>
+        <div className="text-sm flex justify-center items-center pt-4 text-amber-100/60 hover:text-amber-100">
+          <Link
+            to="/politicas-de-privacidade"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Política de Privacidade
+          </Link>
+        </div>
     </section>
   );
 }

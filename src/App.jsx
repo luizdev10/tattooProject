@@ -1,12 +1,14 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/navBar.jsx";
 import Inicio from "./components/inicio.jsx";
 import Trabalhos from "./components/trabalhos.jsx";
 import Sobre from "./components/sobre.jsx"
 import Contato from "./components/contato.jsx";
+import Politicas from "./components/politicas.jsx";
 import ButtonTop from "./components/button-top.jsx"
 
 
-function App() {
+function Principal() {
     return(
         <>
         < NavBar/>
@@ -19,5 +21,17 @@ function App() {
         < ButtonTop/>
         </>
     );
+}
+
+function App() {
+    return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Principal />} />
+
+        <Route path="/politicas-de-privacidade" element={<Politicas />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 export default App;
