@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TextAlignEnd, SquareArrowRightExit } from "lucide-react"
 
 function NavBar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -52,7 +53,7 @@ function NavBar() {
                     onClick={() => setMenuOpen(!menuOpen)}
                     className="text-3xl md:hidden"
                 >
-                    {menuOpen ? "✕" : "☰"}
+                    {menuOpen ? <SquareArrowRightExit /> : <TextAlignEnd />}
                 </button>
             </div>
 
