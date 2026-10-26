@@ -1,4 +1,5 @@
 import fotoSobre from "../assets/img/fotosobre.webp";
+import fotoSobreBruna from "../assets/img/bruna/fotosobre.webp";
 
 const history = [
     { id: 1, Etapa: "1", Title: "O começo", Text: "Fiz minha primeira tatuagem aos 18 anos por curiosidade. O verdadeiro fascínio e a paixão pela arte vieram um pouco mais tarde." },
@@ -53,6 +54,41 @@ function Sobre() {
                             </li>
                         ))}
                     </ol>
+                </div>
+            </div>
+
+            <div className="mx-auto mt-24 grid max-w-6xl gap-14 border-t border-tinta/10 pt-20 md:grid-cols-[7fr_5fr] md:gap-20">
+                <div className="md:pt-4">
+                    <h2 className="font-gotica text-6xl lowercase leading-none md:text-8xl">sobre a bruna</h2>
+
+                    <p className="mt-8 max-w-lg text-lg leading-relaxed text-tinta/75">
+                        Realismo autoral e traço fineline, pensados como identidade: cada
+                        peça carrega um símbolo que é só do cliente. Atende em Juazeiro do
+                        Norte - CE.
+                    </p>
+
+                    <p className="mt-6 flex gap-5 text-sm text-tinta/60">
+                        <span>Realismo</span>
+                        <span>Fineline</span>
+                    </p>
+                </div>
+
+                <div className="md:sticky md:top-24 md:self-start">
+                    <figure className="relative mx-auto max-w-xs">
+                        <div
+                            aria-hidden="true"
+                            className="absolute inset-0 translate-x-3 translate-y-3 rounded-sm border-1 border-solid border-stencil-claro"
+                        />
+                        <img
+                            src={fotoSobreBruna}
+                            alt="Bruna concentrada tatuando em seu estúdio"
+                            className="relative aspect-[3/4] w-full rounded-sm object-cover"
+                        />
+                    </figure>
+
+                    <blockquote className="mt-10 max-w-xs font-gotica text-4xl leading-tight text-stencil">
+                        Arte como identidade.
+                    </blockquote>
                 </div>
             </div>
         </section>

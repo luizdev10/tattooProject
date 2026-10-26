@@ -3,7 +3,14 @@ import { MapPin, MessageCircle } from "lucide-react";
 import { SiInstagram } from "@icons-pack/react-simple-icons";
 import { Link } from "react-router-dom";
 
-const NUMERO_WHATS = "5588988151026";
+const WHATSAPP = {
+  Pedro: "5588988151026",
+  Bruna: "5588997011400",
+};
+const INSTAGRAM = {
+  Pedro: "https://www.instagram.com/pedromenezes_3/",
+  Bruna: "https://www.instagram.com/_brunatattoo/",
+};
 const campo =
   "w-full border-b border-white/25 bg-transparent py-2.5 text-papel outline-none transition-colors placeholder:text-cinza/70 focus:border-stencil-claro autofill:shadow-[inset_0_0_0_1000px_#000] [&:-webkit-autofill]:[-webkit-text-fill-color:#eceaf2] [color-scheme:dark]";
 const rotulo = "text-sm text-cinza";
@@ -25,6 +32,7 @@ function Campo({ label, children }) {
 }
 
 export default function Contato() {
+  const [artista, setArtista] = useState("Pedro");
   const [form, setForm] = useState({
     nome: "",
     ideia: "",
@@ -34,6 +42,7 @@ export default function Contato() {
     hora: "",
   });
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const artigo = artista === "Bruna" ? "da" : "do";
 
   const calcularEstimativa = () => {
     const tamanho = parseFloat(form.tamanho);
@@ -50,11 +59,11 @@ export default function Contato() {
       .filter(Boolean)
       .join(" ");
     const texto =
-      `Olá Pedro! Me chamo ${form.nome}.\n` +
+      `Olá ${artista}! Me chamo ${form.nome}.\n` +
       `Estou com uma ideia de fazer um(a) ${form.ideia}${onde ? `, ${onde}` : ""}.\n` +
       `Tenho disponibilidade ${quando || "a combinar"}.` +
       (estimativa ? `\nEstimativa do site: R$ ${estimativa.toLocaleString("pt-BR")}` : "");
-    window.open(`https://wa.me/${NUMERO_WHATS}?text=${encodeURIComponent(texto)}`, "_blank");
+    window.open(`https://wa.me/${WHATSAPP[artista]}?text=${encodeURIComponent(texto)}`, "_blank");
   };
 
   return (
@@ -67,19 +76,28 @@ export default function Contato() {
             sua história
           </h2>
           <p className="mt-6 max-w-sm leading-relaxed text-cinza">
-            Preencha o formulário e a mensagem chega pronta no WhatsApp do Pedro.
+            Preencha o formulário e a mensagem chega pronta no WhatsApp {artigo} {artista}.
             O orçamento final é combinado na conversa.
           </p>
 
           <div className="mt-10 flex flex-col gap-5 text-papel/85">
             <a
-              href="https://www.instagram.com/pedromenezes_3/"
+              href={INSTAGRAM.Pedro}
               target="_blank"
               rel="noopener noreferrer"
               className="flex w-fit items-center gap-3 transition-colors hover:text-papel"
             >
               <SiInstagram className="h-5 w-5 shrink-0 opacity-70" />
               @pedromenezes_3
+            </a>
+            <a
+              href={INSTAGRAM.Bruna}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-fit items-center gap-3 transition-colors hover:text-papel"
+            >
+              <SiInstagram className="h-5 w-5 shrink-0 opacity-70" />
+              @_brunatattoo
             </a>
             <a
               href="https://www.google.com/maps/@-7.2291944,-39.3032022,3a,75y,149.62h,78.04t/data=!3m7!1e1!3m5!1sLrtD5QBlqkwoPB99mrnvPw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D11.960293368812316%26panoid%3DLrtD5QBlqkwoPB99mrnvPw%26yaw%3D149.6185047435401!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
@@ -94,6 +112,27 @@ export default function Contato() {
         </div>
 
         <form onSubmit={enviar} className="flex flex-col gap-6">
+          <div role="group" aria-label="Falar com" className="flex flex-col gap-2">
+            <span className={rotulo}>Falar com</span>
+            <div className="flex gap-2">
+              {["Pedro", "Bruna"].map((nome) => (
+                <button
+                  key={nome}
+                  type="button"
+                  aria-pressed={artista === nome}
+                  onClick={() => setArtista(nome)}
+                  className={`flex-1 rounded-sm border py-2.5 font-medium transition-colors ${
+                    artista === nome
+                      ? "border-papel bg-papel text-tinta"
+                      : "border-white/25 text-cinza hover:border-white/50 hover:text-papel"
+                  }`}
+                >
+                  {nome}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <Campo label="Seu nome">
             <input name="nome" value={form.nome} onChange={handleChange} required autoComplete="name" className={campo} />
           </Campo>
@@ -171,7 +210,7 @@ export default function Contato() {
       </div>
 
       <footer className="mx-auto mt-24 flex max-w-6xl flex-col gap-3 border-t border-white/10 py-8 text-sm text-cinza sm:flex-row sm:justify-between">
-        <p>Pedro Menezes Tattoo</p>
+        <p>Pedro Menezes &amp; Bruna Tattoo</p>
         <Link to="/politicas-de-privacidade" className="w-fit transition-colors hover:text-papel">
           Política de privacidade
         </Link>
