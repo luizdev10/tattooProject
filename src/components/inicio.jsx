@@ -61,7 +61,9 @@ function Inicio() {
                             alt="Pedro Menezes calçando as luvas antes de tatuar"
                             className="relative aspect-[4/5] w-full rounded-sm object-cover object-[72%_center] grayscale contrast-120"
                         />
-                        <figcaption className="mt-2 font-gotica text-xl lowercase text-papel">pedro</figcaption>
+                        <figcaption className="absolute inset-x-0 bottom-0 rounded-b-sm bg-gradient-to-t from-tinta/95 via-tinta/40 to-transparent px-3 pb-2 pt-10 font-gotica text-xl lowercase text-papel">
+                            pedro
+                        </figcaption>
                     </figure>
 
                     <figure className="relative mt-10 sm:mt-14">
@@ -74,7 +76,9 @@ function Inicio() {
                             alt="Bruna tatuando, concentrada, segurando a máquina sobre o braço da cliente"
                             className="relative aspect-[4/5] w-full rounded-sm object-cover grayscale contrast-120"
                         />
-                        <figcaption className="mt-2 font-gotica text-xl lowercase text-papel">bruna</figcaption>
+                        <figcaption className="absolute inset-x-0 bottom-0 rounded-b-sm bg-gradient-to-t from-tinta/95 via-tinta/40 to-transparent px-3 pb-2 pt-10 font-gotica text-xl lowercase text-papel">
+                            bruna
+                        </figcaption>
                     </figure>
                 </div>
             </div>
