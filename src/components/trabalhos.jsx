@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { SiInstagram } from "@icons-pack/react-simple-icons";
+import { useRevelar } from "../hooks/useRevelar";
 
 import foto1 from "../assets/img/foto1.webp";
 import foto2 from "../assets/img/foto2.webp";
@@ -54,10 +55,41 @@ const photosWork = [
 const estilos = ["Todos", ...new Set(photosWork.map((p) => p.tag))];
 const artistas = ["Pedro", "Bruna"];
 
+function FotoGaleria({ item, onAbrir }) {
+  const [carregada, setCarregada] = useState(false);
+
+  return (
+    <figure className="mb-3 break-inside-avoid sm:mb-5">
+      <button
+        type="button"
+        onClick={onAbrir}
+        aria-label={`Ampliar: ${item.alt}`}
+        className="block w-full cursor-zoom-in overflow-hidden rounded-sm"
+      >
+        <img
+          src={item.url}
+          alt={item.alt}
+          width={item.w}
+          height={item.h}
+          loading="lazy"
+          decoding="async"
+          draggable="false"
+          onLoad={() => setCarregada(true)}
+          className={`w-full bg-white/5 transition duration-200 ease-out hover:opacity-85 [@media(hover:hover)]:hover:scale-[1.03] motion-reduce:transition-none motion-reduce:[@media(hover:hover)]:hover:scale-100 motion-reduce:opacity-100 ${
+            carregada ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      </button>
+      <figcaption className="mt-2 text-sm text-cinza">{item.tag}</figcaption>
+    </figure>
+  );
+}
+
 function Trabalhos() {
   const [estilo, setEstilo] = useState("Todos");
   const [artista, setArtista] = useState("Pedro");
   const [openIndex, setOpenIndex] = useState(null);
+  const { ref: refSecao, oculto } = useRevelar();
 
   const lista = photosWork
     .filter((p) => estilo === "Todos" || p.tag === estilo)
@@ -91,12 +123,14 @@ function Trabalhos() {
   const current = isOpen ? lista[openIndex] : null;
 
   return (
-    <section id="trabalhos" className="scroll-mt-16 w-full bg-grafite px-4 py-20 sm:px-6 md:py-28">
+    <section ref={refSecao} id="trabalhos" className="scroll-mt-16 w-full bg-grafite px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="font-gotica text-6xl lowercase leading-none text-papel md:text-8xl">trabalhos</h2>
-            <p className="mt-4 max-w-md text-cinza">
+            <h2 className={`revelar ${oculto ? "revelar-oculto" : ""} font-gotica text-6xl lowercase leading-none text-papel md:text-8xl`}>
+              trabalhos
+            </h2>
+            <p className={`revelar atraso-80 ${oculto ? "revelar-oculto" : ""} mt-4 max-w-md text-cinza`}>
               Uma seleção de peças recentes. Toque numa foto para ver em tamanho maior.
             </p>
           </div>
@@ -142,26 +176,7 @@ function Trabalhos() {
 
         <div className="mt-12 columns-2 gap-3 sm:gap-5 lg:columns-3">
           {lista.map((item, index) => (
-            <figure key={item.id} className="mb-3 break-inside-avoid sm:mb-5">
-              <button
-                type="button"
-                onClick={() => setOpenIndex(index)}
-                aria-label={`Ampliar: ${item.alt}`}
-                className="block w-full cursor-zoom-in overflow-hidden rounded-sm"
-              >
-                <img
-                  src={item.url}
-                  alt={item.alt}
-                  width={item.w}
-                  height={item.h}
-                  loading="lazy"
-                  decoding="async"
-                  draggable="false"
-                  className="w-full bg-white/5 transition duration-200 ease-out hover:opacity-85 [@media(hover:hover)]:hover:scale-[1.03] motion-reduce:transition-none motion-reduce:[@media(hover:hover)]:hover:scale-100"
-                />
-              </button>
-              <figcaption className="mt-2 text-sm text-cinza">{item.tag}</figcaption>
-            </figure>
+            <FotoGaleria key={item.id} item={item} onAbrir={() => setOpenIndex(index)} />
           ))}
         </div>
 
