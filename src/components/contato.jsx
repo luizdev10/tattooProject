@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MapPin, MessageCircle } from "lucide-react";
 import { SiInstagram } from "@icons-pack/react-simple-icons";
 import { Link } from "react-router-dom";
+import { useRevelar } from "../hooks/useRevelar";
 
 const WHATSAPP = {
   Pedro: "5588988151026",
@@ -32,6 +33,8 @@ function Campo({ label, children }) {
 }
 
 export default function Contato() {
+  const { ref: refSecao, oculto } = useRevelar();
+  const classe = (extra = "") => `revelar ${oculto ? "revelar-oculto" : ""} ${extra}`;
   const [artista, setArtista] = useState("Pedro");
   const [form, setForm] = useState({
     nome: "",
@@ -67,51 +70,57 @@ export default function Contato() {
   };
 
   return (
-    <section id="contato" className="scroll-mt-16 w-full bg-tinta px-4 pt-20 sm:px-6 md:pt-28">
+    <section ref={refSecao} id="contato" className="scroll-mt-16 w-full bg-tinta px-4 pt-20 sm:px-6 md:pt-28">
       <div className="mx-auto grid max-w-6xl gap-14 md:grid-cols-[5fr_6fr] md:gap-20">
         <div>
-          <h2 className="font-gotica text-6xl lowercase leading-[0.9] text-papel md:text-8xl">
+          <h2 className={classe("font-gotica text-6xl lowercase leading-[0.9] text-papel md:text-8xl")}>
             vamos criar
             <br />
             sua história
           </h2>
-          <p className="mt-6 max-w-sm leading-relaxed text-cinza">
+          <p className={classe("atraso-80 mt-6 max-w-sm leading-relaxed text-cinza")}>
             Preencha o formulário e a mensagem chega pronta no WhatsApp {artigo} {artista}.
             O orçamento final é combinado na conversa.
           </p>
 
           <div className="mt-10 flex flex-col gap-5 text-papel/85">
-            <a
-              href={INSTAGRAM.Pedro}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex w-fit items-center gap-3 transition-colors hover:text-papel"
-            >
-              <SiInstagram className="h-5 w-5 shrink-0 opacity-70" />
-              @pedromenezes_3
-            </a>
-            <a
-              href={INSTAGRAM.Bruna}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex w-fit items-center gap-3 transition-colors hover:text-papel"
-            >
-              <SiInstagram className="h-5 w-5 shrink-0 opacity-70" />
-              @_brunatattoo
-            </a>
-            <a
-              href="https://www.google.com/maps/@-7.2291944,-39.3032022,3a,75y,149.62h,78.04t/data=!3m7!1e1!3m5!1sLrtD5QBlqkwoPB99mrnvPw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D11.960293368812316%26panoid%3DLrtD5QBlqkwoPB99mrnvPw%26yaw%3D149.6185047435401!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex max-w-xs items-start gap-3 leading-relaxed transition-colors hover:text-papel"
-            >
-              <MapPin className="mt-1 h-5 w-5 shrink-0 opacity-70" strokeWidth={1.5} />
-              Rua Coronel Filemon Teles, 30, bairro José Geraldo da Cruz
-            </a>
+            <div className={classe("")} style={{ transitionDelay: "140ms" }}>
+              <a
+                href={INSTAGRAM.Pedro}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-fit items-center gap-3 transition-colors hover:text-papel"
+              >
+                <SiInstagram className="h-5 w-5 shrink-0 opacity-70" />
+                @pedromenezes_3
+              </a>
+            </div>
+            <div className={classe("")} style={{ transitionDelay: "200ms" }}>
+              <a
+                href={INSTAGRAM.Bruna}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-fit items-center gap-3 transition-colors hover:text-papel"
+              >
+                <SiInstagram className="h-5 w-5 shrink-0 opacity-70" />
+                @_brunatattoo
+              </a>
+            </div>
+            <div className={classe("")} style={{ transitionDelay: "260ms" }}>
+              <a
+                href="https://www.google.com/maps/@-7.2291944,-39.3032022,3a,75y,149.62h,78.04t/data=!3m7!1e1!3m5!1sLrtD5QBlqkwoPB99mrnvPw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D11.960293368812316%26panoid%3DLrtD5QBlqkwoPB99mrnvPw%26yaw%3D149.6185047435401!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex max-w-xs items-start gap-3 leading-relaxed transition-colors hover:text-papel"
+              >
+                <MapPin className="mt-1 h-5 w-5 shrink-0 opacity-70" strokeWidth={1.5} />
+                Rua Coronel Filemon Teles, 30, bairro José Geraldo da Cruz
+              </a>
+            </div>
           </div>
         </div>
 
-        <form onSubmit={enviar} className="flex flex-col gap-6">
+        <form onSubmit={enviar} className={classe("flex flex-col gap-6")} style={{ transitionDelay: "140ms" }}>
           <div role="group" aria-label="Falar com" className="flex flex-col gap-2">
             <span className={rotulo}>Falar com</span>
             <div className="flex gap-2">
