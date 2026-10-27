@@ -83,7 +83,7 @@ function Faq() {
                                         <ChevronDown
                                             aria-hidden="true"
                                             strokeWidth={1.5}
-                                            className={`h-5 w-5 shrink-0 transition-transform duration-300 motion-reduce:transition-none ${
+                                            className={`h-5 w-5 shrink-0 transition-transform duration-200 motion-reduce:transition-none ${
                                                 aberta ? "rotate-180" : ""
                                             }`}
                                         />
@@ -94,7 +94,7 @@ function Faq() {
                                     role="region"
                                     aria-labelledby={idBotao}
                                     aria-hidden={!aberta}
-                                    className={`grid overflow-hidden transition-[grid-template-rows] duration-300 motion-reduce:transition-none ${
+                                    className={`grid overflow-hidden transition-[grid-template-rows] duration-200 motion-reduce:transition-none ${
                                         aberta ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                                     }`}
                                 >
