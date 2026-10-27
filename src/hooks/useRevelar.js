@@ -5,10 +5,6 @@ const semPreferenciaDeMovimento = () =>
     typeof window.matchMedia === "function" &&
     !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Observa um elemento e esconde-o só se ele ainda não estiver visível ao
-// montar; quando entra na tela (threshold configurável), revela uma única
-// vez. Sem IntersectionObserver ou com prefers-reduced-motion, nunca
-// esconde nada — o conteúdo fica visível por padrão.
 export function useRevelar({ threshold = 0.15 } = {}) {
     const ref = useRef(null);
     const [oculto, setOculto] = useState(false);

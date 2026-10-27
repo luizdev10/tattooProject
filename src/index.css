@@ -74,11 +74,7 @@ body {
   transform: translateY(14px);
   transition: none;
 }
-.atraso-60 { transition-delay: 60ms; }
 .atraso-80 { transition-delay: 80ms; }
-.atraso-120 { transition-delay: 120ms; }
-.atraso-180 { transition-delay: 180ms; }
-.atraso-240 { transition-delay: 240ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .revelar.revelar-oculto { opacity: 1; transform: none; transition: none; }

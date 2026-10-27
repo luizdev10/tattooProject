@@ -1,5 +1,6 @@
 import fotoSobre from "../assets/img/fotosobre.webp";
 import fotoSobreBruna from "../assets/img/bruna/fotosobre.webp";
+import { useRevelar } from "../hooks/useRevelar";
 
 const history = [
     { id: 1, Etapa: "1", Title: "O começo", Text: "Fiz minha primeira tatuagem aos 18 anos por curiosidade. O verdadeiro fascínio e a paixão pela arte vieram um pouco mais tarde." },
@@ -10,13 +11,20 @@ const history = [
 
 
 function Sobre() {
+    const pedro = useRevelar();
+    const bruna = useRevelar();
+    const classeOculta = (hook, extra = "") =>
+        `revelar ${hook.oculto ? "revelar-oculto" : ""} ${extra}`;
+
     return (
         <section id="sobre" className="scroll-mt-16 w-full bg-papel px-4 py-20 text-tinta sm:px-6 md:py-28">
-            <div className="mx-auto grid max-w-6xl gap-14 md:grid-cols-[5fr_7fr] md:gap-20">
+            <div ref={pedro.ref} className="mx-auto grid max-w-6xl gap-14 md:grid-cols-[5fr_7fr] md:gap-20">
                 <div className="md:sticky md:top-24 md:self-start">
-                    <h2 className="font-gotica text-6xl lowercase leading-none md:text-8xl">sobre o pedro</h2>
+                    <h2 className={classeOculta(pedro, "font-gotica text-6xl lowercase leading-none md:text-8xl")}>
+                        sobre o pedro
+                    </h2>
 
-                    <figure className="relative mt-10 max-w-xs">
+                    <figure className={classeOculta(pedro, "atraso-80 relative mt-10 max-w-xs")}>
                         <div
                             aria-hidden="true"
                             className="absolute inset-0 -translate-x-3 translate-y-3 rounded-sm border-1 border-solid border-stencil"
@@ -28,7 +36,7 @@ function Sobre() {
                         />
                     </figure>
 
-                    <blockquote className="mt-10 font-gotica text-4xl leading-tight text-stencil">
+                    <blockquote className={classeOculta(pedro, "atraso-80 mt-10 font-gotica text-4xl leading-tight text-stencil")}>
                         A pele é a tela.
                         <br />
                         A tatuagem é a história.
@@ -36,13 +44,17 @@ function Sobre() {
                 </div>
 
                 <div className="md:pt-4">
-                    <p className="max-w-lg text-lg leading-relaxed text-tinta/75">
+                    <p className={classeOculta(pedro, "atraso-80 max-w-lg text-lg leading-relaxed text-tinta/75")}>
                         Do quarto que virou estúdio às convenções de tatuagem: o caminho até aqui, em quatro passos.
                     </p>
 
                     <ol className="mt-12 border-l-2 border-dotted border-stencil">
-                        {history.map((item) => (
-                            <li key={item.id} className="relative pb-12 pl-10 last:pb-0">
+                        {history.map((item, index) => (
+                            <li
+                                key={item.id}
+                                className={classeOculta(pedro, "relative pb-12 pl-10 last:pb-0")}
+                                style={{ transitionDelay: `${140 + Math.min(index, 4) * 60}ms` }}
+                            >
                                 <span
                                     aria-hidden="true"
                                     className="absolute -left-[15px] top-0 flex h-7 w-7 items-center justify-center rounded-full bg-stencil text-sm font-semibold text-papel"
@@ -57,24 +69,29 @@ function Sobre() {
                 </div>
             </div>
 
-            <div className="mx-auto mt-24 grid max-w-6xl gap-14 border-t border-tinta/10 pt-20 md:grid-cols-[7fr_5fr] md:gap-20">
+            <div
+                ref={bruna.ref}
+                className="mx-auto mt-24 grid max-w-6xl gap-14 border-t border-tinta/10 pt-20 md:grid-cols-[7fr_5fr] md:gap-20"
+            >
                 <div className="md:pt-4">
-                    <h2 className="font-gotica text-6xl lowercase leading-none md:text-8xl">sobre a bruna</h2>
+                    <h2 className={classeOculta(bruna, "font-gotica text-6xl lowercase leading-none md:text-8xl")}>
+                        sobre a bruna
+                    </h2>
 
-                    <p className="mt-8 max-w-lg text-lg leading-relaxed text-tinta/75">
+                    <p className={classeOculta(bruna, "atraso-80 mt-8 max-w-lg text-lg leading-relaxed text-tinta/75")}>
                         Realismo autoral e traço fineline, pensados como identidade: cada
                         peça carrega um símbolo que é só do cliente. Atende em Juazeiro do
                         Norte - CE.
                     </p>
 
-                    <p className="mt-6 flex gap-5 text-sm text-tinta/60">
+                    <p className={classeOculta(bruna, "atraso-80 mt-6 flex gap-5 text-sm text-tinta/60")}>
                         <span>Realismo</span>
                         <span>Fineline</span>
                     </p>
                 </div>
 
                 <div className="md:sticky md:top-24 md:self-start">
-                    <figure className="relative mx-auto max-w-xs">
+                    <figure className={classeOculta(bruna, "atraso-80 relative mx-auto max-w-xs")}>
                         <div
                             aria-hidden="true"
                             className="absolute inset-0 translate-x-3 translate-y-3 rounded-sm border-1 border-solid border-stencil-claro"
@@ -86,7 +103,7 @@ function Sobre() {
                         />
                     </figure>
 
-                    <blockquote className="mt-10 max-w-xs font-gotica text-4xl leading-tight text-stencil">
+                    <blockquote className={classeOculta(bruna, "atraso-80 mt-10 max-w-xs font-gotica text-4xl leading-tight text-stencil")}>
                         Arte como identidade.
                     </blockquote>
                 </div>
