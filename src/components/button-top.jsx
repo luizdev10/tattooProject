@@ -5,9 +5,18 @@ function BotaoTopo() {
     const [visivel, setVisivel] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => setVisivel(window.scrollY > 400);
+        const onScroll = () => {
+            const pertoDoFim =
+                window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 140;
+            setVisivel(window.scrollY > 400 && !pertoDoFim);
+        };
+        onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
+        window.addEventListener("resize", onScroll);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+        };
     }, []);
 
     return (
