@@ -36,7 +36,7 @@ function Inicio() {
                             href={linkWhats(NUMERO_WHATS_BRUNA, "Bruna")}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="rounded-sm border border-papel/40 px-6 py-3.5 font-medium text-papel transition-all duration-500 ease-in-out hover:border-stencil-claro hover:text-stencil-claro"
+                            className="rounded-sm bg-papel px-6 py-3.5 font-medium text-tinta transition-all duration-500 ease-in-out hover:bg-stencil-claro"
                         >
                             Falar com Bruna
                         </a>
