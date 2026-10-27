@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useRevelar } from "../hooks/useRevelar";
 
 const perguntas = [
     {
@@ -40,6 +41,7 @@ const perguntas = [
 
 function Faq() {
     const [abertas, setAbertas] = useState(() => new Set());
+    const { ref: refSecao, oculto } = useRevelar();
 
     const alternar = (id) => {
         setAbertas((atual) => {
@@ -54,22 +56,26 @@ function Faq() {
     };
 
     return (
-        <section id="faq" className="scroll-mt-16 w-full bg-tinta px-4 py-20 sm:px-6 md:py-28">
+        <section ref={refSecao} id="faq" className="scroll-mt-16 w-full bg-tinta px-4 py-20 sm:px-6 md:py-28">
             <div className="mx-auto max-w-3xl">
-                <h2 className="font-gotica text-6xl lowercase leading-none text-papel md:text-8xl">
+                <h2 className={`revelar ${oculto ? "revelar-oculto" : ""} font-gotica text-6xl lowercase leading-none text-papel md:text-8xl`}>
                     perguntas
                     <br />
                     frequentes
                 </h2>
 
                 <ul className="mt-12 divide-y divide-white/10 border-y border-white/10">
-                    {perguntas.map((item) => {
+                    {perguntas.map((item, index) => {
                         const aberta = abertas.has(item.id);
                         const idBotao = `faq-botao-${item.id}`;
                         const idPainel = `faq-painel-${item.id}`;
 
                         return (
-                            <li key={item.id}>
+                            <li
+                                key={item.id}
+                                className={`revelar ${oculto ? "revelar-oculto" : ""}`}
+                                style={{ transitionDelay: `${80 + Math.min(index, 4) * 60}ms` }}
+                            >
                                 <h3>
                                     <button
                                         type="button"
