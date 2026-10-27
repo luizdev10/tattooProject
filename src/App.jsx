@@ -6,7 +6,6 @@ import Sobre from "./components/sobre.jsx"
 import Faq from "./components/faq.jsx";
 import Cuidados from "./components/cuidados.jsx";
 import Localizacao from "./components/localizacao.jsx";
-import Depoimentos from "./components/depoimentos.jsx";
 import Contato from "./components/contato.jsx";
 import Politicas from "./components/politicas.jsx";
 import ButtonTop from "./components/button-top.jsx"
@@ -24,7 +23,6 @@ function Principal() {
         < Faq/>
         < Cuidados/>
         < Localizacao/>
-        < Depoimentos/>
         < Contato/>
         < ButtonTop/>
         </>
