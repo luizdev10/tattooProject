@@ -43,38 +43,38 @@ body {
   user-select: none;
 }
 
-/* Linha pontilhada de stencil — único ornamento do site */
+/* Linha de stencil — único ornamento do site */
 .linha-stencil {
-  height: 6px;
-  background: radial-gradient(circle, currentColor 1.4px, transparent 1.8px) 0 50% / 9px 6px repeat-x;
+  height: 2px;
+  background: currentColor;
 }
 
-/* Entrada do hero: título, botões e cartões surgem em sequência rápida (0 / 100 / 200ms) */
+/* Entrada do hero: título, botões e cartões surgem em sequência (0 / 180 / 360ms) */
 @keyframes entra {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.entra-1 { animation: entra 220ms ease-out both; }
-.entra-2 { animation: entra 220ms ease-out 100ms both; }
-.entra-3 { animation: entra 220ms ease-out 200ms both; }
+.entra-1 { animation: entra 650ms ease-out both; }
+.entra-2 { animation: entra 650ms ease-out 180ms both; }
+.entra-3 { animation: entra 650ms ease-out 360ms both; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .entra-1, .entra-2, .entra-3 { animation: none; }
 }
 
-/* Revela seções ao entrarem na tela: mesma curva do hero (ease-out), 450ms */
+/* Revela seções ao entrarem na tela: mesma curva do hero (ease-out), 700ms */
 .revelar {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 450ms ease-out, transform 450ms ease-out;
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
 }
 .revelar.revelar-oculto {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(22px);
   transition: none;
 }
-.atraso-80 { transition-delay: 80ms; }
+.atraso-80 { transition-delay: 150ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .revelar.revelar-oculto { opacity: 1; transform: none; transition: none; }

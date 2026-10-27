@@ -48,7 +48,7 @@ function Sobre() {
                         Do quarto que virou estúdio às convenções de tatuagem: o caminho até aqui, em quatro passos.
                     </p>
 
-                    <ol className="mt-12 border-l-2 border-dotted border-stencil">
+                    <ol className="mt-12 border-l-2 border-solid border-stencil">
                         {history.map((item, index) => (
                             <li
                                 key={item.id}

@@ -44,7 +44,7 @@ function Inicio() {
 
                     <a
                         href="#trabalhos"
-                        className="entra-2 mt-6 inline-block text-sm font-medium text-cinza underline decoration-dotted underline-offset-4 transition-colors hover:text-papel"
+                        className="entra-2 mt-6 inline-block text-sm font-medium text-cinza underline underline-offset-4 transition-colors hover:text-papel"
                     >
                         Ver trabalhos
                     </a>

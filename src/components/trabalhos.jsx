@@ -55,11 +55,16 @@ const photosWork = [
 const estilos = ["Todos", ...new Set(photosWork.map((p) => p.tag))];
 const artistas = ["Pedro", "Bruna"];
 
-function FotoGaleria({ item, onAbrir }) {
+function FotoGaleria({ item, index, onAbrir }) {
   const [carregada, setCarregada] = useState(false);
+  const { ref, oculto } = useRevelar({ threshold: 0.1 });
 
   return (
-    <figure className="mb-3 break-inside-avoid sm:mb-5">
+    <figure
+      ref={ref}
+      style={{ transitionDelay: `${(index % 6) * 80}ms` }}
+      className={`revelar ${oculto ? "revelar-oculto" : ""} mb-3 break-inside-avoid sm:mb-5`}
+    >
       <button
         type="button"
         onClick={onAbrir}
@@ -176,7 +181,7 @@ function Trabalhos() {
 
         <div className="mt-12 columns-2 gap-3 sm:gap-5 lg:columns-3">
           {lista.map((item, index) => (
-            <FotoGaleria key={item.id} item={item} onAbrir={() => setOpenIndex(index)} />
+            <FotoGaleria key={item.id} item={item} index={index} onAbrir={() => setOpenIndex(index)} />
           ))}
         </div>
 
