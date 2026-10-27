@@ -3,6 +3,7 @@ import NavBar from "./components/navBar.jsx";
 import Inicio from "./components/inicio.jsx";
 import Trabalhos from "./components/trabalhos.jsx";
 import Sobre from "./components/sobre.jsx"
+import Faq from "./components/faq.jsx";
 import Contato from "./components/contato.jsx";
 import Politicas from "./components/politicas.jsx";
 import ButtonTop from "./components/button-top.jsx"
@@ -13,10 +14,11 @@ function Principal() {
         <>
         < NavBar/>
 
-        
+
         < Inicio/>
         < Trabalhos/>
         < Sobre/>
+        < Faq/>
         < Contato/>
         < ButtonTop/>
         </>
