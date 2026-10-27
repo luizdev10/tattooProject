@@ -29,26 +29,26 @@ const INSTAGRAM = {
 };
 
 const photosWork = [
-  { id: "p3", artista: "Pedro", url: foto3, tag: "Black and grey", alt: "Tatuagem black and grey de samurai", desc: "Tatuagem em black and grey com temática samurai, unindo força e tradição em uma composição imponente, com profundidade de sombras e detalhes que destacam armadura, postura e presença." },
-  { id: "p1", artista: "Pedro", url: foto1, tag: "Realismo", alt: "Tatuagem realista de escultura clássica", desc: "Tatuagem realista, escultura clássica, com contraste marcante e riqueza de detalhes." },
-  { id: "p6", artista: "Pedro", url: foto6, tag: "Realismo", alt: "Tatuagem realista do Chester Bennington em black and grey", desc: "Tatuagem realista em black and grey do Chester Bennington, capturando emoção e intensidade em cada detalhe, com contraste forte e acabamento que homenageia sua presença e legado." },
-  { id: "p2", artista: "Pedro", url: foto2, tag: "Colorida", alt: "Tatuagem colorida do Homem-Aranha", desc: "Tatuagem colorida do Homem-Aranha com traço vibrante, alto contraste e acabamento em estilo comic." },
-  { id: "p5", artista: "Pedro", url: foto5, tag: "Black and grey", alt: "Tatuagem black and grey de caveira samurai", desc: "Tatuagem em black and grey com caveira samurai, combinando simbolismo e impacto visual em uma composição marcante, com sombras profundas e detalhes que reforçam atitude, força e personalidade." },
-  { id: "p4", artista: "Pedro", url: foto4, tag: "Realismo", alt: "Tatuagem realista do Homem de Ferro em black and grey", desc: "Tatuagem realista do Homem de Ferro em black and grey, com contraste forte e sombreamento preciso." },
-  { id: "p7", artista: "Pedro", url: foto7, tag: "Anime", alt: "Tatuagem do Vegeta em black and grey", desc: "Tatuagem do Vegeta em black and grey com traço de anime, expressão marcante e sombreamento equilibrado, trazendo atitude e fidelidade ao personagem em uma peça cheia de personalidade." },
-  { id: "p9", artista: "Pedro", url: foto9, tag: "Fineline", alt: "Tatuagem de mariposa em black and grey", desc: "Tatuagem de mariposa em black and grey com traço delicado e simbologia mística, unindo equilíbrio, contraste suave e detalhes finos para uma peça elegante e cheia de significado." },
-  { id: "p8", artista: "Pedro", url: foto8, tag: "Black and grey", alt: "Tatuagem black and grey de múmias", desc: "Tatuagem em black and grey com composição de múmias, explorando textura, contraste e profundidade para criar uma peça sombria, expressiva e cheia de impacto visual." },
+  { id: "p3", artista: "Pedro", url: foto3, w: 532, h: 836, tag: "Black and grey", alt: "Tatuagem black and grey de samurai", desc: "Tatuagem em black and grey com temática samurai, unindo força e tradição em uma composição imponente, com profundidade de sombras e detalhes que destacam armadura, postura e presença." },
+  { id: "p1", artista: "Pedro", url: foto1, w: 627, h: 777, tag: "Realismo", alt: "Tatuagem realista de escultura clássica", desc: "Tatuagem realista, escultura clássica, com contraste marcante e riqueza de detalhes." },
+  { id: "p6", artista: "Pedro", url: foto6, w: 438, h: 822, tag: "Realismo", alt: "Tatuagem realista do Chester Bennington em black and grey", desc: "Tatuagem realista em black and grey do Chester Bennington, capturando emoção e intensidade em cada detalhe, com contraste forte e acabamento que homenageia sua presença e legado." },
+  { id: "p2", artista: "Pedro", url: foto2, w: 571, h: 766, tag: "Colorida", alt: "Tatuagem colorida do Homem-Aranha", desc: "Tatuagem colorida do Homem-Aranha com traço vibrante, alto contraste e acabamento em estilo comic." },
+  { id: "p5", artista: "Pedro", url: foto5, w: 448, h: 720, tag: "Black and grey", alt: "Tatuagem black and grey de caveira samurai", desc: "Tatuagem em black and grey com caveira samurai, combinando simbolismo e impacto visual em uma composição marcante, com sombras profundas e detalhes que reforçam atitude, força e personalidade." },
+  { id: "p4", artista: "Pedro", url: foto4, w: 452, h: 747, tag: "Realismo", alt: "Tatuagem realista do Homem de Ferro em black and grey", desc: "Tatuagem realista do Homem de Ferro em black and grey, com contraste forte e sombreamento preciso." },
+  { id: "p7", artista: "Pedro", url: foto7, w: 570, h: 851, tag: "Anime", alt: "Tatuagem do Vegeta em black and grey", desc: "Tatuagem do Vegeta em black and grey com traço de anime, expressão marcante e sombreamento equilibrado, trazendo atitude e fidelidade ao personagem em uma peça cheia de personalidade." },
+  { id: "p9", artista: "Pedro", url: foto9, w: 622, h: 703, tag: "Fineline", alt: "Tatuagem de mariposa em black and grey", desc: "Tatuagem de mariposa em black and grey com traço delicado e simbologia mística, unindo equilíbrio, contraste suave e detalhes finos para uma peça elegante e cheia de significado." },
+  { id: "p8", artista: "Pedro", url: foto8, w: 615, h: 878, tag: "Black and grey", alt: "Tatuagem black and grey de múmias", desc: "Tatuagem em black and grey com composição de múmias, explorando textura, contraste e profundidade para criar uma peça sombria, expressiva e cheia de impacto visual." },
 
-  { id: "b1", artista: "Bruna", url: brunaFoto1, tag: "Realismo", alt: "Tatuagem realista de rosto com relógio e leão no antebraço", desc: "Manga de antebraço em realismo, unindo um rosto de olhos claros a um relógio quebrado e à face de um leão, com transições de sombra que costuram os três elementos numa só composição." },
-  { id: "b2", artista: "Bruna", url: brunaFoto2, tag: "Realismo", alt: "Tatuagem realista de olho, relógio e águia no antebraço", desc: "Manga de antebraço em realismo com olho, numerais romanos e cabeça de águia, com os olhos em azul vivo destacando-se do preto e cinza ao redor." },
-  { id: "b3", artista: "Bruna", url: brunaFoto3, tag: "Realismo", alt: "Tatuagem realista de rosto feminino com serpente", desc: "Braço fechado em realismo: rosto feminino e serpente se fundem numa só pele, com olhos em âmbar e textura de escamas que atravessa o retrato." },
-  { id: "b4", artista: "Bruna", url: brunaFoto4, tag: "Colorida", alt: "Tatuagem colorida de caveira em chamas com corrente", desc: "Caveira em chamas na canela, toda colorida, com tons de laranja e vermelho e uma corrente presa aos dentes reforçando o peso da imagem." },
-  { id: "b5", artista: "Bruna", url: brunaFoto5, tag: "Fineline", alt: "Tatuagem fineline autoral no ombro", desc: "Composição autoral em fineline no ombro, com um perfil feminino dissolvendo-se em traços soltos, pássaros e elementos geométricos — peça própria para quem quer contar uma história sem apelar pro óbvio." },
-  { id: "b6", artista: "Bruna", url: brunaFoto6, tag: "Realismo", alt: "Tatuagem realista de mulher indígena com cocar", desc: "Retrato realista no antebraço de uma mulher com cocar de penas, pintura facial em vermelho e acabamento detalhado em cada pena e conta." },
-  { id: "b7", artista: "Bruna", url: brunaFoto7, tag: "Anime", alt: "Tatuagem colorida do Naruto com a Raposa de Nove Caudas", desc: "Manga colorida com o Naruto e a sombra da Raposa de Nove Caudas surgindo atrás, em laranja e preto, fiel ao anime." },
-  { id: "b8", artista: "Bruna", url: brunaFoto8, tag: "Realismo", alt: "Tatuagem realista de olho e águia, close no antebraço", desc: "Outro ângulo da manga de olho e águia: destaque pro trabalho de pena por pena e pro contraste do azul do olho da ave." },
-  { id: "b9", artista: "Bruna", url: brunaFoto9, tag: "Anime", alt: "Tatuagem do Gohan Super Sayajin em black and grey", desc: "Gohan em modo Super Sayajin no antebraço, em black and grey, com pontilhismo marcando as luzes do cabelo e da aura." },
-  { id: "b10", artista: "Bruna", url: brunaFoto10, tag: "Anime", alt: "Tatuagem do Ryuk, de Death Note, no braço", desc: "Ryuk, de Death Note, no braço, com os olhos e a maçã em vermelho destacando-se do restante em black and grey." },
+  { id: "b1", artista: "Bruna", url: brunaFoto1, w: 691, h: 915, tag: "Realismo", alt: "Tatuagem realista de rosto com relógio e leão no antebraço", desc: "Manga de antebraço em realismo, unindo um rosto de olhos claros a um relógio quebrado e à face de um leão, com transições de sombra que costuram os três elementos numa só composição." },
+  { id: "b2", artista: "Bruna", url: brunaFoto2, w: 517, h: 670, tag: "Realismo", alt: "Tatuagem realista de olho, relógio e águia no antebraço", desc: "Manga de antebraço em realismo com olho, numerais romanos e cabeça de águia, com os olhos em azul vivo destacando-se do preto e cinza ao redor." },
+  { id: "b3", artista: "Bruna", url: brunaFoto3, w: 671, h: 884, tag: "Realismo", alt: "Tatuagem realista de rosto feminino com serpente", desc: "Braço fechado em realismo: rosto feminino e serpente se fundem numa só pele, com olhos em âmbar e textura de escamas que atravessa o retrato." },
+  { id: "b4", artista: "Bruna", url: brunaFoto4, w: 460, h: 753, tag: "Colorida", alt: "Tatuagem colorida de caveira em chamas com corrente", desc: "Caveira em chamas na canela, toda colorida, com tons de laranja e vermelho e uma corrente presa aos dentes reforçando o peso da imagem." },
+  { id: "b5", artista: "Bruna", url: brunaFoto5, w: 476, h: 826, tag: "Fineline", alt: "Tatuagem fineline autoral no ombro", desc: "Composição autoral em fineline no ombro, com um perfil feminino dissolvendo-se em traços soltos, pássaros e elementos geométricos — peça própria para quem quer contar uma história sem apelar pro óbvio." },
+  { id: "b6", artista: "Bruna", url: brunaFoto6, w: 506, h: 561, tag: "Realismo", alt: "Tatuagem realista de mulher indígena com cocar", desc: "Retrato realista no antebraço de uma mulher com cocar de penas, pintura facial em vermelho e acabamento detalhado em cada pena e conta." },
+  { id: "b7", artista: "Bruna", url: brunaFoto7, w: 514, h: 847, tag: "Anime", alt: "Tatuagem colorida do Naruto com a Raposa de Nove Caudas", desc: "Manga colorida com o Naruto e a sombra da Raposa de Nove Caudas surgindo atrás, em laranja e preto, fiel ao anime." },
+  { id: "b8", artista: "Bruna", url: brunaFoto8, w: 501, h: 712, tag: "Realismo", alt: "Tatuagem realista de olho e águia, close no antebraço", desc: "Outro ângulo da manga de olho e águia: destaque pro trabalho de pena por pena e pro contraste do azul do olho da ave." },
+  { id: "b9", artista: "Bruna", url: brunaFoto9, w: 520, h: 832, tag: "Anime", alt: "Tatuagem do Gohan Super Sayajin em black and grey", desc: "Gohan em modo Super Sayajin no antebraço, em black and grey, com pontilhismo marcando as luzes do cabelo e da aura." },
+  { id: "b10", artista: "Bruna", url: brunaFoto10, w: 470, h: 642, tag: "Anime", alt: "Tatuagem do Ryuk, de Death Note, no braço", desc: "Ryuk, de Death Note, no braço, com os olhos e a maçã em vermelho destacando-se do restante em black and grey." },
 ];
 
 const estilos = ["Todos", ...new Set(photosWork.map((p) => p.tag))];
@@ -152,10 +152,12 @@ function Trabalhos() {
                 <img
                   src={item.url}
                   alt={item.alt}
+                  width={item.w}
+                  height={item.h}
                   loading="lazy"
                   decoding="async"
                   draggable="false"
-                  className="w-full transition-opacity duration-300 hover:opacity-85"
+                  className="w-full bg-white/5 transition-opacity duration-300 hover:opacity-85"
                 />
               </button>
               <figcaption className="mt-2 text-sm text-cinza">{item.tag}</figcaption>
