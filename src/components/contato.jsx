@@ -198,7 +198,7 @@ export default function Contato() {
 
           <button
             type="submit"
-            className="mt-2 flex items-center justify-center gap-2.5 rounded-sm bg-papel py-4 font-medium text-tinta transition-colors hover:bg-gray-500 hover:text-papel transition-all ease-in-out duration-600"
+            className="mt-2 flex items-center justify-center gap-2.5 rounded-sm bg-papel py-4 font-medium text-tinta transition-colors duration-200 ease-out hover:bg-gray-500 hover:text-papel motion-reduce:transition-none"
           >
             <MessageCircle className="h-5 w-5" strokeWidth={1.5} />
             Enviar pelo WhatsApp

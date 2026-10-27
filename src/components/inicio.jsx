@@ -28,7 +28,7 @@ function Inicio() {
                             href={linkWhats(NUMERO_WHATS_PEDRO, "Pedro")}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="rounded-sm bg-papel px-6 py-3.5 font-medium text-tinta transition-all duration-500 ease-in-out hover:bg-stencil-claro"
+                            className="rounded-sm bg-papel px-6 py-3.5 font-medium text-tinta transition-colors duration-200 ease-out hover:bg-stencil-claro motion-reduce:transition-none"
                         >
                             Falar com Pedro
                         </a>
@@ -36,7 +36,7 @@ function Inicio() {
                             href={linkWhats(NUMERO_WHATS_BRUNA, "Bruna")}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="rounded-sm bg-papel px-6 py-3.5 font-medium text-tinta transition-all duration-500 ease-in-out hover:bg-stencil-claro"
+                            className="rounded-sm bg-papel px-6 py-3.5 font-medium text-tinta transition-colors duration-200 ease-out hover:bg-stencil-claro motion-reduce:transition-none"
                         >
                             Falar com Bruna
                         </a>
