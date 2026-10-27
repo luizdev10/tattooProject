@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const itens = [
@@ -11,8 +11,11 @@ const itens = [
 function NavBar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [ativo, setAtivo] = useState("inicio");
+    const listaRef = useRef(null);
+    const itemRefs = useRef({});
+    const [sublinhado, setSublinhado] = useState({ x: 0, largura: 0 });
 
-    
+
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entradas) => entradas.forEach((e) => e.isIntersecting && setAtivo(e.target.id)),
@@ -25,13 +28,28 @@ function NavBar() {
         return () => observer.disconnect();
     }, []);
 
+    useLayoutEffect(() => {
+        const atualizarSublinhado = () => {
+            const container = listaRef.current;
+            const ativoEl = itemRefs.current[ativo];
+            if (!container || !ativoEl) return;
+            const containerRect = container.getBoundingClientRect();
+            const ativoRect = ativoEl.getBoundingClientRect();
+            setSublinhado({ x: ativoRect.left - containerRect.left, largura: ativoRect.width });
+        };
+        atualizarSublinhado();
+        window.addEventListener("resize", atualizarSublinhado);
+        document.fonts?.ready?.then(atualizarSublinhado);
+        return () => window.removeEventListener("resize", atualizarSublinhado);
+    }, [ativo]);
+
     const clique = (e, id) => {
         e.preventDefault();
         setMenuOpen(false);
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     };
 
-    const link = (item, extra = "") => (
+    const link = (item, extra = "", comSublinhadoProprio = true) => (
         <a
             href={`#${item.id}`}
             onClick={(e) => clique(e, item.id)}
@@ -41,7 +59,7 @@ function NavBar() {
             }`}
         >
             {item.label}
-            {ativo === item.id && (
+            {comSublinhadoProprio && ativo === item.id && (
                 <span className="border-b absolute inset-x-0 -bottom-2 text-stencil-claro" />
             )}
         </a>
@@ -58,10 +76,17 @@ function NavBar() {
                     />
                 </a>
 
-                <ul className="hidden items-center gap-9 font-texto text-[15px] font-medium md:flex">
+                <ul ref={listaRef} className="relative hidden items-center gap-9 font-texto text-[15px] font-medium md:flex">
                     {itens.map((item) => (
-                        <li key={item.id}>{link(item)}</li>
+                        <li key={item.id} ref={(el) => { itemRefs.current[item.id] = el; }}>
+                            {link(item, "", false)}
+                        </li>
                     ))}
+                    <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -bottom-2 left-0 h-px w-px origin-left bg-stencil-claro transition-transform duration-300 ease-out motion-reduce:transition-none"
+                        style={{ transform: `translateX(${sublinhado.x}px) scaleX(${sublinhado.largura})` }}
+                    />
                 </ul>
 
                 <button
