@@ -157,7 +157,7 @@ function Trabalhos() {
                   loading="lazy"
                   decoding="async"
                   draggable="false"
-                  className="w-full bg-white/5 transition-opacity duration-300 hover:opacity-85"
+                  className="w-full bg-white/5 transition duration-200 ease-out hover:opacity-85 [@media(hover:hover)]:hover:scale-[1.03] motion-reduce:transition-none motion-reduce:[@media(hover:hover)]:hover:scale-100"
                 />
               </button>
               <figcaption className="mt-2 text-sm text-cinza">{item.tag}</figcaption>
