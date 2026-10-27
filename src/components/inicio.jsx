@@ -12,18 +12,18 @@ function Inicio() {
         <section id="inicio" className="relative w-full overflow-hidden bg-tinta pt-16">
             <div className="mx-auto grid min-h-[calc(100svh-4rem)] max-w-6xl items-center gap-14 px-4 py-14 sm:px-6 md:grid-cols-[1.15fr_1fr] md:gap-16">
                 <div>
-                    <h1 className="revela font-gotica text-[clamp(3.25rem,9.5vw,6.75rem)] lowercase leading-[0.86] text-papel">
+                    <h1 className="entra-1 font-gotica text-[clamp(3.25rem,9.5vw,6.75rem)] lowercase leading-[0.86] text-papel">
                         pedro menezes
                         <br />
                         <span className="text-stencil-claro">&amp;</span> bruna
                     </h1>
 
-                    <p className="mt-8 max-w-md text-lg leading-relaxed text-cinza">
+                    <p className="entra-1 mt-8 max-w-md text-lg leading-relaxed text-cinza">
                         Duas assinaturas, um estúdio só, em Juazeiro do Norte. Realismo em
                         black and grey e traço fineline — cada tatuagem nasce da sua história.
                     </p>
 
-                    <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+                    <div className="entra-2 mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
                         <a
                             href={linkWhats(NUMERO_WHATS_PEDRO, "Pedro")}
                             target="_blank"
@@ -44,13 +44,13 @@ function Inicio() {
 
                     <a
                         href="#trabalhos"
-                        className="mt-6 inline-block text-sm font-medium text-cinza underline decoration-dotted underline-offset-4 transition-colors hover:text-papel"
+                        className="entra-2 mt-6 inline-block text-sm font-medium text-cinza underline decoration-dotted underline-offset-4 transition-colors hover:text-papel"
                     >
                         Ver trabalhos
                     </a>
                 </div>
 
-                <div className="surge mx-auto grid w-full max-w-sm grid-cols-2 gap-4 sm:gap-6 md:max-w-none">
+                <div className="entra-3 mx-auto grid w-full max-w-sm grid-cols-2 gap-4 sm:gap-6 md:max-w-none">
                     <figure className="relative">
                         <div
                             aria-hidden="true"

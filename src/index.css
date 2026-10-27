@@ -49,19 +49,16 @@ body {
   background: radial-gradient(circle, currentColor 1.4px, transparent 1.8px) 0 50% / 9px 6px repeat-x;
 }
 
-/* Momento de entrada do hero: o nome "passa" como um decalque */
-@keyframes revela {
-  from { clip-path: inset(0 100% 0 0); }
-  to { clip-path: inset(0 0 0 0); }
+/* Entrada do hero: título, botões e cartões surgem em sequência rápida (0 / 100 / 200ms) */
+@keyframes entra {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-@keyframes surge {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.revela { animation: revela 0.3s cubic-bezier(0.7, 0, 0.2, 1) both; }
-.surge { animation: surge 0.9s ease-out 0.7s both; }
+.entra-1 { animation: entra 220ms ease-out both; }
+.entra-2 { animation: entra 220ms ease-out 100ms both; }
+.entra-3 { animation: entra 220ms ease-out 200ms both; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .revela, .surge { animation: none; }
+  .entra-1, .entra-2, .entra-3 { animation: none; }
 }
