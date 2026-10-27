@@ -98,9 +98,11 @@ function Faq() {
                                         aberta ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                                     }`}
                                 >
-                                    <p className="max-w-prose overflow-hidden pb-5 leading-relaxed text-cinza">
-                                        {item.resposta}
-                                    </p>
+                                    <div className="overflow-hidden">
+                                        <p className="max-w-prose pb-5 leading-relaxed text-cinza">
+                                            {item.resposta}
+                                        </p>
+                                    </div>
                                 </div>
                             </li>
                         );
