@@ -50,7 +50,7 @@ function Inicio() {
                     </a>
                 </div>
 
-                <div className="entra-3 mx-auto grid w-full max-w-sm grid-cols-2 gap-4 sm:gap-6 md:max-w-none">
+                <div className="entra-3 mx-auto grid w-full max-w-sm grid-cols-2 items-start gap-4 sm:gap-6 md:max-w-none">
                     <figure className="relative">
                         <div
                             aria-hidden="true"
