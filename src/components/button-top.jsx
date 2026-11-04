@@ -1,34 +1,25 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
 function BotaoTopo() {
     const [visivel, setVisivel] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => {
-            const pertoDoFim =
-                window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 140;
-            setVisivel(window.scrollY > 400 && !pertoDoFim);
-        };
+        const onScroll = () => setVisivel(window.scrollY > 500);
         onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", onScroll);
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-            window.removeEventListener("resize", onScroll);
-        };
+        return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
     return (
         <button
+            type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Voltar ao topo"
             tabIndex={visivel ? 0 : -1}
-            className={`fixed bottom-6 right-4 z-40 rounded-full border border-white/15 bg-tinta/45 p-2 text-papel backdrop-blur-sm transition-all duration-300 hover:bg-tinta/80 hover:border-stencil-claro hover:text-stencil-claro motion-reduce:transition-none sm:bottom-8 sm:right-6 sm:p-2.5 ${
-                visivel ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"
-            }`}
+            className={`to-top ${visivel ? "visible" : ""}`}
         >
-            <ArrowUp className="h-4 w-4 sm:h-[18px] sm:w-[18px]" strokeWidth={1.5} />
+            <ArrowUp size={20} />
         </button>
     );
 }

@@ -1,229 +1,222 @@
 import { useState } from "react";
-import { MapPin, MessageCircle } from "lucide-react";
-import { SiInstagram } from "@icons-pack/react-simple-icons";
 import { Link } from "react-router-dom";
 import { useRevelar } from "../hooks/useRevelar";
+import { ARTISTAS, LINK_MAPA, linkWhats } from "../lib/artistas";
 
-const WHATSAPP = {
-  Pedro: "5588988151026",
-  Bruna: "5588997011400",
-};
-const INSTAGRAM = {
-  Pedro: "https://www.instagram.com/pedromenezes_3/",
-  Bruna: "https://www.instagram.com/_brunatattoo/",
-};
-const campo =
-  "w-full border-b border-white/25 bg-transparent py-2.5 text-papel outline-none transition-colors placeholder:text-cinza/70 focus:border-stencil-claro autofill:shadow-[inset_0_0_0_1000px_#000] [&:-webkit-autofill]:[-webkit-text-fill-color:#eceaf2] [color-scheme:dark]";
-const rotulo = "text-sm text-cinza";
-const hojeISO = () => new Date().toISOString().split("T")[0];
+const ESTILOS = ["Black and grey", "Realismo", "Fineline", "Colorida", "Anime", "Cobertura"];
+const LOCAIS = ["Braço", "Antebraço", "Perna", "Costas", "Peito", "Costela"];
+const TAMANHOS = ["5", "10", "15", "20", "30"];
+const PERIODOS = ["Manhã", "Tarde", "Noite"];
 
-function formatarDiaMes(iso) {
-  if (!iso) return "";
-  const [, mes, dia] = iso.split("-");
-  return `${dia}/${mes}`;
+function formatarDiaBR(iso) {
+    if (!iso) return "";
+    const partes = iso.split("-");
+    if (partes.length !== 3) return iso;
+    const [ano, mes, dia] = partes;
+    return `${dia}/${mes}/${ano}`;
 }
 
-function Campo({ label, children }) {
-  return (
-    <label className="flex flex-col gap-1">
-      <span className={rotulo}>{label}</span>
-      {children}
-    </label>
-  );
+function Chip({ label, pressed, onClick }) {
+    return (
+        <button type="button" className="chip" aria-pressed={pressed} onClick={onClick}>
+            {label}
+        </button>
+    );
 }
 
-export default function Contato() {
-  const { ref: refSecao, oculto } = useRevelar();
-  const classe = (extra = "") => `revelar ${oculto ? "revelar-oculto" : ""} ${extra}`;
-  const [artista, setArtista] = useState("Pedro");
-  const [form, setForm] = useState({
-    nome: "",
-    ideia: "",
-    local: "",
-    tamanho: "",
-    disponibilidade: "",
-    hora: "",
-  });
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const artigo = artista === "Bruna" ? "da" : "do";
+export default function Contato({ artista, setArtista }) {
+    const { ref: refSecao, oculto } = useRevelar();
+    const [nome, setNome] = useState("");
+    const [ideia, setIdeia] = useState("");
+    const [estilos, setEstilos] = useState([]);
+    const [local, setLocal] = useState("");
+    const [tamanho, setTamanho] = useState("");
+    const [dia, setDia] = useState("");
+    const [periodo, setPeriodo] = useState("");
 
-  const calcularEstimativa = () => {
-    const tamanho = parseFloat(form.tamanho);
-    if (!tamanho || tamanho <= 0) return null;
-    return Math.ceil(tamanho / 5) * 80;
-  };
-  const estimativa = calcularEstimativa();
+    const a = ARTISTAS[artista];
 
-  const enviar = (e) => {
-    e.preventDefault();
-    const data = formatarDiaMes(form.disponibilidade);
-    const quando = [data, form.hora && `às ${form.hora}`].filter(Boolean).join(" ");
-    const onde = [form.local && `no(a) ${form.local}`, form.tamanho && `com ${form.tamanho}cm`]
-      .filter(Boolean)
-      .join(" ");
-    const texto =
-      `Olá ${artista}! Me chamo ${form.nome}.\n` +
-      `Estou com uma ideia de fazer um(a) ${form.ideia}${onde ? `, ${onde}` : ""}.\n` +
-      `Tenho disponibilidade ${quando || "a combinar"}.` +
-      (estimativa ? `\nEstimativa do site: R$ ${estimativa.toLocaleString("pt-BR")}` : "");
-    window.open(`https://wa.me/${WHATSAPP[artista]}?text=${encodeURIComponent(texto)}`, "_blank");
-  };
+    const toggleEstilo = (valor) =>
+        setEstilos((atual) => (atual.includes(valor) ? atual.filter((v) => v !== valor) : [...atual, valor]));
 
-  return (
-    <section ref={refSecao} id="contato" className="scroll-mt-16 w-full bg-tinta px-4 pt-20 sm:px-6 md:pt-28">
-      <div className="mx-auto grid max-w-6xl gap-14 md:grid-cols-[5fr_6fr] md:gap-20">
-        <div>
-          <h2 className={classe("font-gotica text-6xl lowercase leading-[0.9] text-papel md:text-8xl")}>
-            vamos criar
-            <br />
-            sua história
-          </h2>
-          <p className={classe("atraso-80 mt-6 max-w-sm leading-relaxed text-cinza")}>
-            Preencha o formulário e a mensagem chega pronta no WhatsApp {artigo} {artista}.
-            O orçamento final é combinado na conversa.
-          </p>
+    const toggleUnico = (valorAtual, setter) => (valor) => setter(valorAtual === valor ? "" : valor);
+    const toggleLocal = toggleUnico(local, setLocal);
+    const toggleTamanho = toggleUnico(tamanho, setTamanho);
+    const togglePeriodo = toggleUnico(periodo, setPeriodo);
 
-          <div className="mt-10 flex flex-col gap-5 text-papel/85">
-            <div className={classe("")} style={{ transitionDelay: "140ms" }}>
-              <a
-                href={INSTAGRAM.Pedro}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-fit items-center gap-3 transition-colors hover:text-papel"
-              >
-                <SiInstagram className="h-5 w-5 shrink-0 opacity-70" />
-                @pedromenezes_3
-              </a>
+    const cm = parseFloat((tamanho || "").replace(",", "."));
+    const estimativa = cm > 0 ? Math.ceil(cm / 5) * 80 : null;
+
+    const linhas = [`Olá ${a.nome}! Quero fazer uma tatuagem.`];
+    if (nome.trim()) linhas.push(`Nome: ${nome.trim()}`);
+    if (ideia.trim()) linhas.push(`Ideia: ${ideia.trim()}`);
+    if (estilos.length) linhas.push(`Estilo: ${estilos.join(", ")}`);
+    if (local.trim()) linhas.push(`Local do corpo: ${local.trim()}`);
+    if (tamanho.trim()) linhas.push(`Tamanho: ${tamanho.trim()} cm`);
+    if (estimativa) linhas.push(`Estimativa do site: R$ ${estimativa.toLocaleString("pt-BR")} (só uma referência; o orçamento final é combinado aqui)`);
+    if (dia) linhas.push(`Dia de preferência: ${formatarDiaBR(dia)}`);
+    if (periodo) linhas.push(`Período: ${periodo}`);
+    const mensagem = linhas.join("\n");
+
+    return (
+        <section ref={refSecao} className="contact" id="contato">
+            <div className={`wrap contact-grid rv ${oculto ? "pre" : ""}`}>
+                <div>
+                    <h2>vamos criar sua história</h2>
+                    <p className="lead">Preencha o formulário e a mensagem chega pronta no WhatsApp. O orçamento final é combinado na conversa.</p>
+                    <div className="where">
+                        <div>
+                            <h3>Onde fica</h3>
+                            <p>Rua Coronel Filemon Teles, 30<br />Bairro José Geraldo da Cruz<br />Juazeiro do Norte, CE</p>
+                            <a className="btn ink" href={LINK_MAPA} target="_blank" rel="noopener noreferrer">Ver no mapa</a>
+                        </div>
+                        <div>
+                            <h3>Instagram</h3>
+                            <p>
+                                <a href={ARTISTAS.Pedro.instagram} target="_blank" rel="noopener noreferrer">{ARTISTAS.Pedro.instagramHandle}</a>
+                                <br />
+                                <a href={ARTISTAS.Bruna.instagram} target="_blank" rel="noopener noreferrer">{ARTISTAS.Bruna.instagramHandle}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="brief" noValidate onSubmit={(e) => e.preventDefault()}>
+                    <div className="grp">
+                        <h3>Com quem você quer falar?</h3>
+                        <div className="pickrow" role="group" aria-label="Escolher artista">
+                            {["Pedro", "Bruna"].map((nomeArtista) => (
+                                <button
+                                    key={nomeArtista}
+                                    type="button"
+                                    className="artist"
+                                    aria-pressed={artista === nomeArtista}
+                                    onClick={() => setArtista(nomeArtista)}
+                                >
+                                    <b>{nomeArtista}</b>
+                                    <span>{ARTISTAS[nomeArtista].especialidade}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="grp">
+                        <h3>Você</h3>
+                        <label htmlFor="f-nome">
+                            Seu nome
+                            <input id="f-nome" type="text" autoComplete="name" placeholder="Como posso te chamar?" value={nome} onChange={(e) => setNome(e.target.value)} />
+                        </label>
+                    </div>
+
+                    <div className="grp">
+                        <h3>A tatuagem</h3>
+                        <label htmlFor="f-ideia">
+                            Sua ideia
+                            <textarea id="f-ideia" placeholder="Conte o que você imagina ou cole um link de referência" value={ideia} onChange={(e) => setIdeia(e.target.value)} />
+                        </label>
+
+                        <span className="chips-label" id="lbl-estilo">Estilo (pode marcar mais de um)</span>
+                        <div className="chips" role="group" aria-labelledby="lbl-estilo">
+                            {ESTILOS.map((e) => (
+                                <Chip key={e} label={e} pressed={estilos.includes(e)} onClick={() => toggleEstilo(e)} />
+                            ))}
+                        </div>
+
+                        <div className="fields">
+                            <label className="full" htmlFor="f-local">
+                                Local do corpo
+                                <input id="f-local" type="text" placeholder="Antebraço, costela…" value={local} onChange={(e) => setLocal(e.target.value)} />
+                            </label>
+                            <div className="chips full" role="group" aria-label="Locais mais comuns">
+                                {LOCAIS.map((l) => (
+                                    <Chip key={l} label={l} pressed={local.trim().toLowerCase() === l.toLowerCase()} onClick={() => toggleLocal(l)} />
+                                ))}
+                            </div>
+
+                            <label className="full" htmlFor="f-tam">
+                                Tamanho aproximado (cm)
+                                <input id="f-tam" type="number" inputMode="decimal" step="0.1" min="0" placeholder="Ex.: 15" value={tamanho} onChange={(e) => setTamanho(e.target.value)} />
+                            </label>
+                            <div className="chips full" role="group" aria-label="Tamanhos mais comuns">
+                                {TAMANHOS.map((t) => (
+                                    <Chip key={t} label={`${t} cm`} pressed={tamanho === t} onClick={() => toggleTamanho(t)} />
+                                ))}
+                            </div>
+
+                            {estimativa && (
+                                <div className="estimate full" aria-live="polite">
+                                    <span className="est-label">Estimativa para {tamanho.replace(".", ",")} cm</span>
+                                    <strong className="est-val">R$ {estimativa.toLocaleString("pt-BR")}</strong>
+                                    <p className="est-note">Isto é só uma estimativa, calculada pelo tamanho. O preço final depende da complexidade e dos detalhes do desenho, e o orçamento é combinado no WhatsApp.</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="grp">
+                        <h3>Quando</h3>
+                        <label htmlFor="f-dia">
+                            Dia de preferência
+                            <input id="f-dia" type="date" value={dia} onChange={(e) => setDia(e.target.value)} />
+                        </label>
+                        <span className="chips-label" id="lbl-per">Período de preferência</span>
+                        <div className="chips" role="group" aria-labelledby="lbl-per">
+                            {PERIODOS.map((p) => (
+                                <Chip key={p} label={p} pressed={periodo === p} onClick={() => togglePeriodo(p)} />
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="preview" aria-live="polite">
+                        <span className="pv-label">Sua mensagem, como vai chegar no WhatsApp</span>
+                        <p className="pv">{mensagem}</p>
+                    </div>
+
+                    <a className="btn lilac" href={linkWhats(a.numero, mensagem)} target="_blank" rel="noopener noreferrer">
+                        Enviar pelo WhatsApp
+                    </a>
+                    <p className="note">A estimativa é só uma referência. O orçamento final, o dia e o horário são combinados pelo WhatsApp.</p>
+                    <p className="phones">WhatsApp {artista === "Pedro" ? "do Pedro" : "da Bruna"}: {a.telefone}</p>
+                </form>
             </div>
-            <div className={classe("")} style={{ transitionDelay: "200ms" }}>
-              <a
-                href={INSTAGRAM.Bruna}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-fit items-center gap-3 transition-colors hover:text-papel"
-              >
-                <SiInstagram className="h-5 w-5 shrink-0 opacity-70" />
-                @_brunatattoo
-              </a>
-            </div>
-            <div className={classe("")} style={{ transitionDelay: "260ms" }}>
-              <a
-                href="https://www.google.com/maps/@-7.2291944,-39.3032022,3a,75y,149.62h,78.04t/data=!3m7!1e1!3m5!1sLrtD5QBlqkwoPB99mrnvPw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D11.960293368812316%26panoid%3DLrtD5QBlqkwoPB99mrnvPw%26yaw%3D149.6185047435401!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex max-w-xs items-start gap-3 leading-relaxed transition-colors hover:text-papel"
-              >
-                <MapPin className="mt-1 h-5 w-5 shrink-0 opacity-70" strokeWidth={1.5} />
-                Rua Coronel Filemon Teles, 30, bairro José Geraldo da Cruz
-              </a>
-            </div>
-          </div>
-        </div>
 
-        <form onSubmit={enviar} className={classe("flex flex-col gap-6")} style={{ transitionDelay: "140ms" }}>
-          <div role="group" aria-label="Falar com" className="flex flex-col gap-2">
-            <span className={rotulo}>Falar com</span>
-            <div className="flex gap-2">
-              {["Pedro", "Bruna"].map((nome) => (
-                <button
-                  key={nome}
-                  type="button"
-                  aria-pressed={artista === nome}
-                  onClick={() => setArtista(nome)}
-                  className={`flex-1 rounded-sm border py-2.5 font-medium transition-colors ${
-                    artista === nome
-                      ? "border-papel bg-papel text-tinta"
-                      : "border-white/25 text-cinza hover:border-white/50 hover:text-papel"
-                  }`}
-                >
-                  {nome}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <Campo label="Seu nome">
-            <input name="nome" value={form.nome} onChange={handleChange} required autoComplete="name" className={campo} />
-          </Campo>
-
-          <Campo label="Sua ideia">
-            <textarea
-              name="ideia"
-              value={form.ideia}
-              onChange={handleChange}
-              required
-              rows={3}
-              placeholder="Ex.: um leão realista com rosas"
-              className={`${campo} resize-none`}
-            />
-          </Campo>
-
-          <div className="grid grid-cols-2 gap-5">
-            <Campo label="Local do corpo">
-              <input name="local" value={form.local} onChange={handleChange} placeholder="Ex.: antebraço" autoComplete="off" className={campo} />
-            </Campo>
-            <Campo label="Tamanho (cm)">
-              <input
-                name="tamanho"
-                value={form.tamanho}
-                onChange={handleChange}
-                placeholder="Ex.: 15"
-                autoComplete="off"
-                type="number"
-                inputMode="decimal"
-                step="0.1"
-                min="0"
-                className={campo}
-              />
-            </Campo>
-          </div>
-
-          {estimativa && (
-            <div aria-live="polite" className="border-l-2 border-solid border-stencil-claro pl-5">
-              <p className={rotulo}>Estimativa para {form.tamanho}cm</p>
-              <p className="mt-1 text-3xl font-semibold text-papel">R$ {estimativa.toLocaleString("pt-BR")}</p>
-              <p className="mt-2 text-xs leading-relaxed text-cinza">
-                Valor de referência. O preço final depende da complexidade e dos detalhes do desenho.
-              </p>
-            </div>
-          )}
-
-          <div className="grid grid-cols-2 gap-5">
-            <Campo label="Dia de preferência">
-              <input
-                type="date"
-                name="disponibilidade"
-                value={form.disponibilidade}
-                onChange={handleChange}
-                required
-                min={hojeISO()}
-                className={campo}
-              />
-            </Campo>
-            <Campo label="Horário de preferência">
-              <input type="time" name="hora" value={form.hora} onChange={handleChange} required step="1800" className={campo} />
-            </Campo>
-          </div>
-
-          <button
-            type="submit"
-            className="mt-2 flex items-center justify-center gap-2.5 rounded-sm bg-papel py-4 font-medium text-tinta transition-colors duration-200 ease-out hover:bg-gray-500 hover:text-papel motion-reduce:transition-none"
-          >
-            <MessageCircle className="h-5 w-5" strokeWidth={1.5} />
-            Enviar pelo WhatsApp
-          </button>
-          <p className="text-center text-xs text-cinza">
-            Dia e horário são só preferência. A data é confirmada pelo WhatsApp.
-          </p>
-        </form>
-      </div>
-
-      <footer className="mx-auto mt-24 flex max-w-6xl flex-col gap-3 border-t border-white/10 py-8 text-sm text-cinza sm:flex-row sm:justify-between">
-        <p>Pedro Menezes &amp; Bruna Tattoo</p>
-        <Link to="/politicas-de-privacidade" className="w-fit transition-colors hover:text-papel">
-          Política de privacidade
-        </Link>
-      </footer>
-    </section>
-  );
+            <footer className="foot">
+                <div className="wrap">
+                    <span className="big" aria-hidden="true">pedro menezes <span>&amp; bruna</span></span>
+                    <div className="foot-cols">
+                        <div>
+                            <h3>Estúdio</h3>
+                            <p>Rua Coronel Filemon Teles, 30<br />Bairro José Geraldo da Cruz<br />Juazeiro do Norte, CE</p>
+                            <a className="btn" href={LINK_MAPA} target="_blank" rel="noopener noreferrer">Ver no mapa</a>
+                        </div>
+                        <div>
+                            <h3>Pedro</h3>
+                            <p className="soft">{ARTISTAS.Pedro.especialidade}</p>
+                            <p>{ARTISTAS.Pedro.telefone}</p>
+                            <a href={linkWhats(ARTISTAS.Pedro.numero, "Olá Pedro! Quero fazer uma tatuagem")} target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+                            <a href={ARTISTAS.Pedro.instagram} target="_blank" rel="noopener noreferrer">{ARTISTAS.Pedro.instagramHandle}</a>
+                        </div>
+                        <div>
+                            <h3>Bruna</h3>
+                            <p className="soft">{ARTISTAS.Bruna.especialidade}</p>
+                            <p>{ARTISTAS.Bruna.telefone}</p>
+                            <a href={linkWhats(ARTISTAS.Bruna.numero, "Olá Bruna! Quero fazer uma tatuagem")} target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+                            <a href={ARTISTAS.Bruna.instagram} target="_blank" rel="noopener noreferrer">{ARTISTAS.Bruna.instagramHandle}</a>
+                        </div>
+                        <div>
+                            <h3>Páginas</h3>
+                            <a href="#trabalhos">Trabalhos</a>
+                            <a href="#sobre">Sobre</a>
+                            <a href="#faq">Perguntas</a>
+                            <a href="#contato">Contato</a>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <span>Pedro Menezes &amp; Bruna Tattoo · Juazeiro do Norte, CE</span>
+                        <Link to="/politicas-de-privacidade">Política de privacidade</Link>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    );
 }
