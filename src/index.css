@@ -154,6 +154,7 @@ section { padding-block: clamp(80px, 11vw, 168px); }
 /* contato */
 .contact { background: var(--bone); color: var(--ink); padding-bottom: 0; }
 .contact-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 88px); align-items: start; }
+.contact-info { position: sticky; top: 96px; }
 .contact h2 { font-size: clamp(48px, 6.2vw, 100px); line-height: 0.92; }
 .contact .lead { margin-top: 24px; max-width: 26em; font-size: 20px; }
 .where { margin-top: clamp(32px, 4vw, 56px); display: grid; gap: 22px; }
@@ -192,7 +193,7 @@ input:focus-visible, textarea:focus-visible { outline: 3px solid var(--lilac); o
 form .btn { width: 100%; font-size: 18px; min-height: 60px; }
 form .note { color: var(--soft); font-size: 15px; margin-top: -10px; }
 .phones { color: var(--soft); font-size: 15px; margin-top: -14px; }
-@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } .fields { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } .fields { grid-template-columns: 1fr; } .contact-info { position: static; } }
 
 /* rodapé */
 .foot { margin-top: clamp(72px, 9vw, 140px); background: var(--ink); color: var(--bone); padding-top: clamp(48px, 6vw, 96px); padding-bottom: 28px; }

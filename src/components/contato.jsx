@@ -61,7 +61,7 @@ export default function Contato({ artista, setArtista }) {
     return (
         <section ref={refSecao} className="contact" id="contato">
             <div className={`wrap contact-grid rv ${oculto ? "pre" : ""}`}>
-                <div>
+                <div className="contact-info">
                     <h2>vamos criar sua história</h2>
                     <p className="lead">Preencha o formulário e a mensagem chega pronta no WhatsApp. O orçamento final é combinado na conversa.</p>
                     <div className="where">
