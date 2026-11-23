@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRevelar } from "../hooks/useRevelar";
 import { ARTISTAS } from "../lib/artistas";
 
@@ -74,9 +75,38 @@ function Trabalhos({ artista, setArtista }) {
 
   const listaPorArtista = (nome) => photosWork.filter((p) => p.artista === nome).filter((p) => estilo === "Todos" || p.tag === estilo);
 
+  const lightboxRef = useRef(null);
+  const origemRef = useRef(null);
+  const lista = aberta ? listaPorArtista(aberta.artista) : [];
+  const posicao = aberta ? lista.findIndex((p) => p.id === aberta.id) : -1;
+  const abrir = (item) => {
+    origemRef.current = document.activeElement;
+    setAberta(item);
+  };
+  const ir = (passo) => {
+    if (lista.length < 2) return;
+    setAberta(lista[(posicao + passo + lista.length) % lista.length]);
+  };
+
   useEffect(() => {
     if (!aberta) return;
-    const onKey = (e) => e.key === "Escape" && setAberta(null);
+    const onKey = (e) => {
+      if (e.key === "Escape") return setAberta(null);
+      if (e.key === "ArrowRight") return ir(1);
+      if (e.key === "ArrowLeft") return ir(-1);
+      if (e.key !== "Tab") return;
+      const focaveis = lightboxRef.current?.querySelectorAll("button");
+      if (!focaveis?.length) return;
+      const primeiro = focaveis[0];
+      const ultimo = focaveis[focaveis.length - 1];
+      if (e.shiftKey && document.activeElement === primeiro) {
+        e.preventDefault();
+        ultimo.focus();
+      } else if (!e.shiftKey && document.activeElement === ultimo) {
+        e.preventDefault();
+        primeiro.focus();
+      }
+    };
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
@@ -84,6 +114,12 @@ function Trabalhos({ artista, setArtista }) {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKey);
     };
+  });
+
+  useEffect(() => {
+    if (aberta) return;
+    origemRef.current?.focus?.();
+    origemRef.current = null;
   }, [aberta]);
 
   return (
@@ -127,7 +163,7 @@ function Trabalhos({ artista, setArtista }) {
         {artistas.map((nome) => (
           <div className="gallery" key={nome} hidden={artista !== nome}>
             {listaPorArtista(nome).map((item, index) => (
-              <FotoGaleria key={item.id} item={item} index={index} onAbrir={() => setAberta(item)} />
+              <FotoGaleria key={item.id} item={item} index={index} onAbrir={() => abrir(item)} />
             ))}
           </div>
         ))}
@@ -143,12 +179,20 @@ function Trabalhos({ artista, setArtista }) {
       {aberta && (
         <div
           className="lightbox"
+          ref={lightboxRef}
           role="dialog"
           aria-modal="true"
           aria-label="Foto ampliada"
           onClick={(e) => e.target === e.currentTarget && setAberta(null)}
         >
           <button type="button" autoFocus onClick={() => setAberta(null)}>Fechar</button>
+          {lista.length > 1 && (
+            <>
+              <button type="button" className="lb-nav lb-prev" aria-label="Foto anterior" onClick={() => ir(-1)}><ChevronLeft size={22} /></button>
+              <button type="button" className="lb-nav lb-next" aria-label="Próxima foto" onClick={() => ir(1)}><ChevronRight size={22} /></button>
+              <span className="lb-count" aria-live="polite">{posicao + 1} / {lista.length}</span>
+            </>
+          )}
           <img src={aberta.url} alt={aberta.alt} />
         </div>
       )}
